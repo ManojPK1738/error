@@ -8,7 +8,7 @@ public class LoginRequest {
 
     private String username;
     private String password;
-
+//The @JsonProperty("username") annotation in Java indicates that the username field in the JSON object should map to the username variable in the Java object during serialization and deserialization using the Jackson library.
     @JsonCreator
     public LoginRequest(@JsonProperty("username") String username, @JsonProperty("password") String password) {
         this.username = username;

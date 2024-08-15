@@ -18,6 +18,9 @@
                     class="ng-dirty">
                     <span class="text-danger">Please Enter UserName.</span>
                   </div>
+                  <div *ngIf="itemForm.controls['username'].hasError('pattern') && ( itemForm.get('username')?.touched || itemForm.get('username')?.dirty)" class="text-danger">
+                    Username must be in lowercase and alphabetical.
+                  </div>
                 </div>
   
                 <div class="mb-3">
@@ -42,6 +45,11 @@
                     class="ng-dirty">
                     <span class="text-danger">Please Enter password.</span>
                   </div>
+                  <div *ngIf="itemForm.controls['password'].hasError('pattern') && ( itemForm.get('password')?.touched || itemForm.get('password')?.dirty)" class="text-danger">
+                    Password must be in valid pattern.
+                  </div>
+    
+                  
                 </div>
   
                 <div class="mb-3">

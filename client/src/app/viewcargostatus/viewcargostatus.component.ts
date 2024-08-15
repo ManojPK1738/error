@@ -21,6 +21,7 @@ export class ViewcargostatusComponent {
 
   search()
   {
+    this.showError = false;
     debugger;
     if(this.cargoIdMd!=null)
     {
@@ -29,7 +30,6 @@ export class ViewcargostatusComponent {
         this.cargo=data;
         console.log(this.cargo);
       }, error => {
-        // Handle error
         this.showError = true;
         this.errorMessage = "An error occurred while searching in. Please try again later or no record found";
         console.error('Login error:', error);

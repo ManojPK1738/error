@@ -15,21 +15,24 @@ export class RegistrationComponent implements OnInit {
   formModel: any = { role: null, email: '', password: '', username: '' };
   showMessage: boolean = false;
   responseMessage: any;
+  usernamePattern = '^[a-z0-9]+$';
+  passwordPattern = '^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,20}$'
 
   constructor(public router:Router, private httpService:HttpService, private formBuilder: FormBuilder) { 
     
     this.itemForm = this.formBuilder.group({
       email: [this.formModel.email,[ Validators.required, Validators.email]],
-      password: [this.formModel.password,[ Validators.required]],
+      password: [this.formModel.password,[ Validators.required,Validators.pattern(this.passwordPattern)]],
       role: [this.formModel.userType,[ Validators.required]],
-      username: [this.formModel.username,[ Validators.required]],
+      username: [this.formModel.username,[ Validators.required,Validators.pattern(this.usernamePattern)]],
   });
 }
+// uniqueValidators(){}
 
 ngOnInit(): void {
 }
 onRegister()
-{
+{ 
   if(this.itemForm.valid)
   {
     this.showMessage=false;

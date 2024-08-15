@@ -138,7 +138,7 @@ export class AddcargoComponent implements OnInit {
   getCargo() {
     this.cargList=[];
     this.httpService.getCargo().subscribe((data: any) => {
-      this.cargList=data;
+      this.cargList = data;
       console.log(this.cargList);
     }, error => {
       // Handle error
@@ -147,6 +147,8 @@ export class AddcargoComponent implements OnInit {
       console.error('Login error:', error);
     });;
   }
+
+
   getDrivers() {
     this.driverList=[];
     this.httpService.getDrivers().subscribe((data: any) => {
@@ -162,14 +164,14 @@ export class AddcargoComponent implements OnInit {
  
   onSubmit()
   {
-    if(this.itemForm.valid)
-    {
+    
       if (this.itemForm.valid) {
+        // console.log("Adding"+this.itemForm.value);
+        console.log()
         this.showError = false;
         this.httpService.addCargo(this.itemForm.value).subscribe((data: any) => {
           this.itemForm.reset();
           this.getCargo();
-          
         }, error => {
           // Handle error
           this.showError = true;
@@ -179,15 +181,20 @@ export class AddcargoComponent implements OnInit {
       } else {
         this.itemForm.markAllAsTouched();
       }
+    
     }
-    else{
-      this.itemForm.markAllAsTouched();
-    }
-  }
+     
+  
+
+
   addDriver(value:any)
   {
     this.assignModel.cargoId=value.id
   }
+
+  
+
+
   assignDriver()
   {
     if(this.assignModel.driverId!=null)
@@ -196,9 +203,15 @@ export class AddcargoComponent implements OnInit {
       this.httpService.assignDriver(this.assignModel.driverId,this.assignModel.cargoId).subscribe((data: any) => {
         debugger;
         this.showMessage = true;
-        this.responseMessage=data.message;;
+        this.responseMessage=data.message;
+
+        const cargo = this.cargList.find((item: any) => item.id === this.assignModel.cargoId);
+      if (cargo) {
+        cargo.driverAssigned = true;
+      }
+
+
       }, error => {
-        // Handle error
         this.showError = true;
         this.errorMessage = "An error occurred while logging in. Please try again later.";
         console.error('Login error:', error);

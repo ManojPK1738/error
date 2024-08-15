@@ -41,16 +41,29 @@ export class HttpService {
       { headers: headers }
     );
   }
+
+  // assignBusiness(businessid: any, cargoId: any): Observable<any> {
+  //   const authToken = this.authService.getToken();
+  //   let headers = new HttpHeaders();
+  //   headers = headers.set('Content-Type', 'application/json');
+  //   headers = headers.set('Authorization', `Bearer ${authToken}`);
+  //   return this.http.post<any>(
+  //     `${this.serverName}/api/business/assign-cargo?cargoId=${cargoId}&driverId=${businessid}`,
+  //     {}, // Body
+  //     { headers: headers }
+  //   );
+  // }
   
 
   getAssignOrders(driverId:any):Observable<any> {
-   
     const authToken = this.authService.getToken();
     let headers = new HttpHeaders();
     headers = headers.set('Content-Type', 'application/json');
     headers = headers.set('Authorization', `Bearer ${authToken}`)
-    return this.http.get(this.serverName+`/api/driver/cargo?driverId=`+driverId,{headers:headers});
+    return this.http.get(this.serverName+`/api/driver/cargo?driverId=${driverId}`,{headers:headers});
   }
+
+
   getCargo():Observable<any> {
    
     const authToken = this.authService.getToken();

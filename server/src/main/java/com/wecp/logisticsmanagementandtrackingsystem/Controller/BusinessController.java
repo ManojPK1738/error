@@ -5,7 +5,6 @@ import com.wecp.logisticsmanagementandtrackingsystem.entity.Cargo;
 import com.wecp.logisticsmanagementandtrackingsystem.entity.Driver;
 import com.wecp.logisticsmanagementandtrackingsystem.service.CargoService;
 import com.wecp.logisticsmanagementandtrackingsystem.service.DriverService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,9 +25,10 @@ public class BusinessController {
     private DriverService driverService;
 
     @PostMapping("/api/business/cargo")
-    @CrossOrigin(origins = "*")
+    // @CrossOrigin(origins = "*")
     public ResponseEntity<Cargo> addCargo(@RequestBody Cargo cargo) {
         Cargo addedCargo = cargoService.addCargo(cargo);
+        // CargoaddedCargo.getBusiness().getId()
         return new ResponseEntity<>(addedCargo, HttpStatus.OK);
     }
 
@@ -54,5 +54,6 @@ public class BusinessController {
         } else {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to assign cargo.");
         }
+        
     }
 }

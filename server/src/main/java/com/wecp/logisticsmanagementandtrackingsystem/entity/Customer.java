@@ -12,8 +12,6 @@ public class Customer {
     private String name;
     private String email;
 
-    // Other business-related properties
-
 
     public Long getId() {
         return id;

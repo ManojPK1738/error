@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,7 @@ export class AuthService {
   private token: string | null = null;
   private isLoggedIn: boolean = false;
 
-  constructor() {}
+  constructor(private http:HttpClient) {}
 
   // Method to save token received from login
   saveToken(token: string) {
@@ -18,6 +20,7 @@ export class AuthService {
     // Optionally, you can save the token to local storage or a cookie for persistence
     localStorage.setItem('token', token);
   }
+  
    SetRole(role:any)
   {
     localStorage.setItem('role',role);
@@ -51,4 +54,19 @@ export class AuthService {
      this.token=null;
      this.isLoggedIn=false
    }
+
+
+
+
+  //  checkServerStatus(): Observable<any> {
+  //   return this.http.get('/api/status') // Example API to check server status
+  //     .pipe(
+  //       catchError((error) => {
+  //         if (error.status === 0) { // Server down or unreachable
+  //           window.location.href = '/error.html'; // Redirect to error page
+  //         }
+  //         return throwError(error); // Return an Observable to satisfy the catchError requirement
+  //       })
+  //     );
+  // }
 }

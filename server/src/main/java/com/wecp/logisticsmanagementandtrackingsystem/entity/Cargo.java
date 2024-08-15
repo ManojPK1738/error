@@ -16,7 +16,8 @@ public class Cargo {
     private String content;
     private String size;
     private String status; // Status can be 'PENDING', 'IN_TRANSIT', 'DELIVERED'
-
+    // private boolean driverAssigned;
+    
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "business_id")
     private Business business;
@@ -24,6 +25,7 @@ public class Cargo {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "driver_id")
     private Driver driver;
+
 
     public Long getId() {
         return id;
@@ -72,5 +74,13 @@ public class Cargo {
     public void setDriver(Driver driver) {
         this.driver = driver;
     }
+
+    // public boolean isDriverAssigned() {
+    //     return driverAssigned;
+    // }
+
+    // public void setDriverAssigned(boolean driverAssigned) {
+    //     this.driverAssigned = driverAssigned;
+    // }
 }
 
